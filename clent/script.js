@@ -18,65 +18,31 @@ function saveChats() {
 function renderChat() {
   chatBox.innerHTML = '';
   const messages = chats[currentChatId]?.messages || [];
-
-  messages.forEach((msg, index) => {
-    const className = msg.sender === 'You' ? 'message user' : 'message bot';
+  messages.forEach(({ sender, text }) => {
+    const className = sender === 'You' ? 'message user' : 'message bot';
     const div = document.createElement('div');
     div.className = className;
-    div.innerHTML = `
-      ${msg.text}
-      <span class="delete-btn" data-index="${index}">🗑️</span>
-    `;
+    div.innerText = `${text}`;
     chatBox.appendChild(div);
   });
-
   chatBox.scrollTop = chatBox.scrollHeight;
-
-  // Handle delete clicks
-  document.querySelectorAll('.delete-btn').forEach(btn => {
-    btn.onclick = () => {
-      const i = btn.dataset.index;
-      chats[currentChatId].messages.splice(i, 1);
-      saveChats();
-      renderChat();
-    };
-  });
 }
-
 
 
 // Render sidebar
 function renderChatHistory() {
   chatHistoryList.innerHTML = '';
-
   Object.keys(chats).forEach(id => {
     const name = chats[id].name || `Chat ${id.slice(-5)}`;
-
     const li = document.createElement('li');
-    li.innerHTML = `
-      <span class="chat-name">${name}</span>
-      <span class="chat-delete" data-id="${id}">🗑️</span>
-    `;
-
-    li.querySelector('.chat-name').onclick = () => {
+    li.textContent = name;
+    li.onclick = () => {
       currentChatId = id;
       renderChat();
     };
-
-    li.querySelector('.chat-delete').onclick = (e) => {
-      e.stopPropagation();
-      delete chats[id];
-      if (currentChatId === id) {
-        currentChatId = Date.now().toString(); // create new chat ID
-      }
-      saveChats();
-      renderChat();
-    };
-
     chatHistoryList.appendChild(li);
   });
 }
-
 
 // Add message to chat
 function addMessage(sender, text) {
