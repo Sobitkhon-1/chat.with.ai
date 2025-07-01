@@ -1,0 +1,34 @@
+<!-- client/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multi-AI Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar">
+      <h2>Chats</h2>
+      <button id="newChatBtn">➕ New Chat</button>
+      <ul id="chatHistoryList"></ul>
+    </aside>
+
+    <main class="chat-container">
+      <select id="botSelect">
+        <option value="gemini">Gemini</option>
+        <option value="grok">Grok</option>
+      </select>
+
+      <div id="chatBox"></div>
+
+      <form id="chatForm">
+        <input type="text" id="messageInput" placeholder="Type your message..." required />
+        <button type="submit">Send</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

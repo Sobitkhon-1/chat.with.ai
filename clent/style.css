@@ -1,0 +1,56 @@
+.chat-container {
+  width: 500px;
+  margin: 50px auto;
+  font-family: Arial;
+}
+
+#chatBox {
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 400px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+}
+
+#messageInput {
+  width: 80%;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+}
+
+/*       */
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+#sidebar {
+  width: 200px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
+}
+
+#chatHistoryList {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#chatHistoryList li {
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#chatHistoryList li:hover {
+  background-color: #eaeaea;
+}
